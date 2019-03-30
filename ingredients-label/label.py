@@ -41,7 +41,7 @@ def upload_file():
             #print text
             #if found these ingredients words
             if((text.find("INGREDIENTS:")!=-1) or (text.find("ingredients:")!=-1) or (text.find("Ingredients:")!=-1)):
-                print "Found it"
+                print("Found it")
                 indexOfIn = 0
                 #set the index of the word ingredients depends on whihch one is found
                 if(text.find("INGREDIENTS:")!=-1):
@@ -51,7 +51,7 @@ def upload_file():
                 elif(text.find("Ingredients:")!=-1):
                     indexOfIn = text.find("Ingredients:")
                 else:
-                    print "Not found"
+                    print("Not found")
 
                 index = indexOfIn + 12
                 startIndex = index
@@ -68,7 +68,7 @@ def upload_file():
                 dictlist = dictlist.strip()
                 words = dictlist.split(",") #list of words
                 #try to print out on terminal to check
-                print "print list: "
+                print("print list: ")
                 for word in words:
                     print (word)
             #if not found on the string text
@@ -89,7 +89,7 @@ def upload_file():
                     # if we find it put them in to the list to use for database.
                     if((text.find("INGREDIENTS:")!=-1) or (text.find("ingredients:")!=-1) or (text.find("Ingredients:")!=-1)):
                         indexOfIn = 0
-                        print "if inside while loop"
+                        print("if inside while loop")
                         if(text.find("INGREDIENTS:")!=-1):
                             indexOfIn = text.find("INGREDIENTS:")
                         elif(text.find("ingredients:")!=-1):
@@ -97,7 +97,7 @@ def upload_file():
                         elif(text.find("Ingredients:")!=-1):
                             indexOfIn = text.find("Ingredients:")
                         else:
-                            print "Not found"
+                            print("Not found")
 
                         #set the start index for the string
                         index = indexOfIn + 12
@@ -115,7 +115,7 @@ def upload_file():
                         dictlist = dictlist.strip()
                         words = dictlist.split(",")
                         #print on terminal for testing purpose
-                        print "print list: "
+                        print("print list: ")
                         for word in words:
                             print (word)
 
