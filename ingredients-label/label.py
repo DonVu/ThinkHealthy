@@ -127,3 +127,8 @@ def upload_file():
                         
             return text
     return "no file"
+
+def results(ingredients=None):
+    if ingredients is None:
+        ingredients = {}
+    return render_template('results.html', ingredients=ingredients)

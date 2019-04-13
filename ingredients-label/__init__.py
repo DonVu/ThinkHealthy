@@ -4,7 +4,6 @@ from flask import Flask , render_template, request, redirect, url_for
 
 from werkzeug.utils import secure_filename
 
-
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
