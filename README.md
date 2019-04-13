@@ -21,7 +21,7 @@ To install:
     export FLASK_APP=ingredients-label
     flask run
     ```
-6. Open a web browser and navigate to the ip address displayed in the terminal with the /label/ suffix e.g:
+6. Open a web browser and navigate to the ip address displayed in the terminal e.g:
    ```
-   127.0.0.1:5000/label/
+   127.0.0.1:5000
    ```
