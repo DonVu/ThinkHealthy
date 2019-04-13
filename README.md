@@ -12,12 +12,16 @@ To install:
     ```
     pip install -r requirements.txt
     ```
-4. Run the application with these commands in the parent folder of ingredients-label folder:
+4. Install Tesseract with this command:
+    ```
+    sudo apt-get install tesseract-ocr
+    ```
+5. Run the application with these commands in the parent folder of ingredients-label folder:
     ```
     export FLASK_APP=ingredients-label
     flask run
     ```
-5. Open a web browser and navigate to the ip address displayed in the terminal with the /label/ suffix e.g:
+6. Open a web browser and navigate to the ip address displayed in the terminal with the /label/ suffix e.g:
    ```
    127.0.0.1:5000/label/
    ```
