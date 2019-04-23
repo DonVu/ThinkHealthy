@@ -18,32 +18,13 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto text-center">
-          <h2 class="section-heading text-white">We've got what you need!</h2>
+          <h2 class="section-heading text-white">We help ingredient-conscious consumers choose the healthiest food products!</h2>
           <hr class="light my-4">
-          <p class="text-faded mb-4">Ingredients Check has everything you need for checking to know which Ingredients is good or bad for your health</p>
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+          <p class="text-faded mb-4">Think Healthy app is the easiest way to check ingredients in your products. 
+            Just upload the ingredients label and Think Healthy will provide info on the product and its ingredients!</p>
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Lets Get Started!</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section id="services">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <h2 class="section-heading">Upload Image</h2>
-          <hr class="my-4">
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <form id="upload-form" class="" action="{{url_for('label.upload_file')}}" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Browse Image</label>
-          <input type="file" name="file" accept="image/*" class="form-control"  multiple>
-          <input type="submit" name="send" value="send">
-        </div>
-      </form>
     </div>
   </section>
 
@@ -144,11 +125,41 @@
     </div>
   </section>
 
-  <section class="bg-dark text-white">
-    <div class="container text-center">
-      <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-      <a class="btn btn-light btn-xl sr-button" href="http://startbootstrap.com/template-overviews/creative/">Download Now!</a>
+  <section id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading">Upload Image</h2>
+          <hr class="my-4">
+        </div>
+      </div>
     </div>
-  </section>
+    <div class="container">
+      <form id="upload-form" class="" action="{{url_for('label.upload_file')}}" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Browse Image</label>
+          <input type="file" name="file" accept="image/*" class="form-control" multiple>
+          <input type="submit" name="send" value="send">
+        </div>
+      </form>
+    </div>
+    <div class="">
+      <table border=1 align="center" style="margin-left: 160px;margin-right:160px;">
+      {%if results%}
+        <tr>
+          <td algin="center"><b>Name</td>
+          <td align="center"><b>Description</td>
+        </tr>
+        {% for key, value in results.items() %}
+        <tr>
+          <th> {{ key }} </th>
+          <td> {{ value }} </td>
+        </tr>
+        {% endfor %}
+      {%else%}
+        <h1 align ="center" style="margin-left: 160px;margin-right:160px;">There are no unhealthy ingredients detected, please upload another image</h1>
+      {%endif%}
+      </table>
+    </div>
 
 {% include 'footer.html' %} 

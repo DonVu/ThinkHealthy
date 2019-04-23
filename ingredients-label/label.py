@@ -12,7 +12,6 @@ from werkzeug.utils import secure_filename
 
 bp = Blueprint('label', __name__, url_prefix='/label')
 
-
 global words
 words = []
 results = {}
@@ -37,7 +36,7 @@ def get_db():
 
 @bp.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html',results=results)
 
 
 @bp.route('/uploader', methods = ['GET','POST'])
@@ -140,7 +139,7 @@ def upload_file():
                     #print text
 
                     # if we find it put them in to the list to use for database.
-                    if((text.find("INGREDIENTS:")!=-1) or (text.find("ingredients:")!=-1) or (text.find("Ingredients:")!=-1)):
+                    if((text.find("INGREDIENTS:")!=-1) or (text.find("ingredients:")!=-1) or (text.find("Ingredients:")!=-1) or (text.find("Ingredients:")!=-1)):
                         indexOfIn = 0
                         print("if inside while loop")
                         if(text.find("INGREDIENTS:")!=-1):
