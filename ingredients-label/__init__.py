@@ -17,6 +17,8 @@ def create_app(test_config=None):
 
     UPLOAD_FOLDER = 'ingredients-label/static/img'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    DATABASE = 'ingredients-label/static/database/ingredients.db'
+    app.config['DATABASE'] = DATABASE
 
 
     if test_config is None:
