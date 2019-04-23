@@ -1,9 +1,8 @@
 import os
 
-from flask import Flask , render_template, request
+from flask import Flask , render_template, request, redirect, url_for
 
 from werkzeug.utils import secure_filename
-
 
 def create_app(test_config=None):
     # create and configure the app
@@ -35,9 +34,9 @@ def create_app(test_config=None):
         pass
 
     # a simple page that says hello
-    @app.route('/hello')
+    @app.route('/')
     def hello():
-        return 'Hello, World!'
+        return redirect(url_for('label.index'))
 
 
     from . import label

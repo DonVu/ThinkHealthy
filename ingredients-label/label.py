@@ -10,7 +10,7 @@ from flask import (
 )
 from werkzeug.utils import secure_filename
 
-bp = Blueprint('label', __name__, url_prefix='/')
+bp = Blueprint('label', __name__, url_prefix='/label')
 
 global words
 words = []
@@ -21,14 +21,14 @@ def get_db():
     db = getattr(g, '_database', None)
     if db is None:
         db = g._database = sqlite3.connect(DATABASE)
-        print "connect successful"
+        print("connect successful")
         db.row_factory = sqlite3.Row
         cur = db.cursor()
         cur.execute("SELECT name,description FROM ingredients")
         #2D array.
         rows = cur.fetchall()
         for row in rows:
-            print row
+            print(row)
     return db
 
 
@@ -47,7 +47,7 @@ def upload_file():
             #return redirect(request.url)
             #if file not fould redirect to index page and ask to re-upload
             results={}
-            return render_template("index.html",results = results)
+            return results(results)
         file = request.files['file']
         if file.filename == '':
             print('No selected file')
@@ -61,12 +61,12 @@ def upload_file():
             img = img.convert('L')
 
             text = image_to_string(img)
-            print "raw text"
-            print text
+            print("raw text")
+            print (text)
             #print text
             #if found these ingredients words
             if((text.find("INGREDIENTS:")!=-1) or (text.find("ingredients:")!=-1) or (text.find("Ingredients:")!=-1)):
-                print "Found it"
+                print("Found it")
                 indexOfIn = 0
                 #set the index of the word ingredients depends on whihch one is found
                 if(text.find("INGREDIENTS:")!=-1):
@@ -76,7 +76,7 @@ def upload_file():
                 elif(text.find("Ingredients:")!=-1):
                     indexOfIn = text.find("Ingredients:")
                 else:
-                    print "Not found"
+                    print("Not found")
 
                 index = indexOfIn + 12
                 startIndex = index
@@ -96,32 +96,32 @@ def upload_file():
                 dictlist = dictlist.strip()
                 words = dictlist.split(",") #list of words
                 #try to print out on terminal to check
-                print "print list: "
+                print("print list: ")
                 #test database
                 #get_db()
                 #connect to database
                 db = getattr(g, '_database', None)
                 if db is None:
                     db = g._database = sqlite3.connect(DATABASE)
-                    print "connect successful"
+                    print("connect successful")
                     db.row_factory = sqlite3.Row
                     cur = db.cursor()
                     cur.execute("SELECT name,description FROM ingredients")
                     #2D array.
                     rows = cur.fetchall()
                     for row in rows:
-                        print row
+                        print(row)
                     results = {}
-                    print "found in database"
+                    print("found in database")
                     for word in words:
                         word = word.lstrip()
                         for word2 in rows:
                             if word2[0].lower() == word.lower():
-                                print word2[0] + ": "+ word2[1]
+                                print(word2[0] + ": "+ word2[1])
                                 results[word2[0]]=word2[1]
-                    return render_template("index.html",results = results)
+                    return results_page(results)
                     results ={}
-                print "after searching"
+                print("after searching")
 
             #if not found on the string text
             else:
@@ -141,7 +141,7 @@ def upload_file():
                     # if we find it put them in to the list to use for database.
                     if((text.find("INGREDIENTS:")!=-1) or (text.find("ingredients:")!=-1) or (text.find("Ingredients:")!=-1)):
                         indexOfIn = 0
-                        print "if inside while loop"
+                        print("if inside while loop")
                         if(text.find("INGREDIENTS:")!=-1):
                             indexOfIn = text.find("INGREDIENTS:")
                         elif(text.find("ingredients:")!=-1):
@@ -149,7 +149,7 @@ def upload_file():
                         elif(text.find("Ingredients:")!=-1):
                             indexOfIn = text.find("Ingredients:")
                         else:
-                            print "Not found"
+                            print("Not found")
 
                         #set the start index for the string
                         index = indexOfIn + 12
@@ -176,24 +176,24 @@ def upload_file():
                         db = getattr(g, '_database', None)
                         if db is None:
                             db = g._database = sqlite3.connect(DATABASE)
-                            print "connect successful"
+                            print("connect successful")
                             db.row_factory = sqlite3.Row
                             cur = db.cursor()
                             cur.execute("SELECT name FROM ingredients")
                             #2D array.
                             rows = cur.fetchall()
                             for row in rows:
-                                print row
+                                print(row)
                             results ={}
                             for word in words:
                                 word = word.lstrip()
                                 for word2 in rows:
                                     if word2[0].lower() == word.lower():
-                                        print word2[0] + ": "+ word2[1]
+                                        print(word2[0] + ": "+ word2[1])
                                         results[word2[0]]=word2[1]
-                            return render_template("index.html",results = results)
+                            return results_page(results)
                             results ={}
-                        print "after searching"
+                        print("after searching")
 
                         break
                     #if we rotate more than 3 times meaning that we did not find it. Break out of loop.
@@ -203,5 +203,10 @@ def upload_file():
             return text
     else:
         results = {}
-        return render_template("index.html",results = results)
+        return results_page(results)
     return "no file"
+
+def results_page(ingredients=None):
+    if ingredients is None:
+        ingredients = {}
+    return render_template('results.html', ingredients=ingredients)
