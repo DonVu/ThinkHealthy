@@ -1,11 +1,11 @@
 {% include 'header.html' %}
 
-  <header class="masthead text-center text-white d-flex">
+<header class="masthead text-center text-white d-flex">
     <div class="container my-auto">
       <div class="row">
         <div class="col-lg-10 mx-auto">
           <h1 class="text-uppercase">
-            <strong>Your Favorite Place to check for Ingredients</strong>
+            <strong>Your Favorite Place to check for Healthy Ingredients</strong>
           </h1>
           <hr>
         </div>
@@ -21,110 +21,13 @@
           <h2 class="section-heading text-white">We help ingredient-conscious consumers choose the healthiest food products!</h2>
           <hr class="light my-4">
           <p class="text-faded mb-4">Think Healthy app is the easiest way to check ingredients in your products. 
-            Just upload the ingredients label and Think Healthy will provide info on the product and its ingredients!</p>
+            Just upload the ingredients label and Think Healthy will provide info on the product and its ingredients!
+            </p>
           <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Lets Get Started!</a>
         </div>
       </div>
     </div>
   </section>
-
-  <section class="p-0" id="portfolio">
-    <div class="container-fluid p-0">
-      <div class="row no-gutters popup-gallery">
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="{{ url_for('static', filename='img/portfolio/fullsize/1.jpg') }}">
-            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/1.jpg') }}" alt="">
-            <div class="portfolio-box-caption">
-              <div class="portfolio-box-caption-content">
-                <div class="project-category text-faded">
-                  Category
-                </div>
-                <div class="project-name">
-                  Project Name
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="{{ url_for('static', filename='img/portfolio/fullsize/2.jpg') }}">
-            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/2.jpg') }}" alt="">
-            <div class="portfolio-box-caption">
-              <div class="portfolio-box-caption-content">
-                <div class="project-category text-faded">
-                  Category
-                </div>
-                <div class="project-name">
-                  Project Name
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="{{ url_for('static', filename='img/portfolio/fullsize/3.jpg') }}">
-            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/3.jpg') }}" alt="">
-            <div class="portfolio-box-caption">
-              <div class="portfolio-box-caption-content">
-                <div class="project-category text-faded">
-                  Category
-                </div>
-                <div class="project-name">
-                  Project Name
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="{{ url_for('static', filename='img/portfolio/fullsize/4.jpg') }}">
-            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/4.jpg') }}" alt="">
-            <div class="portfolio-box-caption">
-              <div class="portfolio-box-caption-content">
-                <div class="project-category text-faded">
-                  Category
-                </div>
-                <div class="project-name">
-                  Project Name
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="{{ url_for('static', filename='img/portfolio/fullsize/5.jpg') }}">
-            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/5.jpg') }}" alt="">
-            <div class="portfolio-box-caption">
-              <div class="portfolio-box-caption-content">
-                <div class="project-category text-faded">
-                  Category
-                </div>
-                <div class="project-name">
-                  Project Name
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="{{ url_for('static', filename='img/portfolio/fullsize/6.jpg') }}">
-            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/6.jpg') }}" alt="">
-            <div class="portfolio-box-caption">
-              <div class="portfolio-box-caption-content">
-                <div class="project-category text-faded">
-                  Category
-                </div>
-                <div class="project-name">
-                  Project Name
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section id="services">
     <div class="container">
       <div class="row">
@@ -143,23 +46,108 @@
         </div>
       </form>
     </div>
-    <div class="">
-      <table border=1 align="center" style="margin-left: 160px;margin-right:160px;">
-      {%if results%}
-        <tr>
-          <td algin="center"><b>Name</td>
-          <td align="center"><b>Description</td>
-        </tr>
-        {% for key, value in results.items() %}
-        <tr>
-          <th> {{ key }} </th>
-          <td> {{ value }} </td>
-        </tr>
-        {% endfor %}
-      {%else%}
-        <h1 align ="center" style="margin-left: 160px;margin-right:160px;">There are no unhealthy ingredients detected, please upload another image</h1>
-      {%endif%}
-      </table>
+  <section class="bg-dark text-white">
+      <div class="container text-center">
+        <h2 class="mb-0">Here are some examples of valid photos</h2>
+        <!-- <a class="btn btn-light btn-xl sr-button" href="http://startbootstrap.com/template-overviews/creative/">Download Now!</a> -->
+      </div>
+    </section>
+  <section class="p-0" id="portfolio">
+    <div class="container-fluid p-0">
+      <div class="row no-gutters popup-gallery">
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="{{ url_for('static', filename='img/portfolio/fullsize/1.jpg') }}">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/1.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class="project-category text-faded">
+                  Category
+                </div>
+                <div class="project-name">
+                  Examples
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="{{ url_for('static', filename='img/portfolio/fullsize/2.jpg') }}">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/2.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class="project-category text-faded">
+                  Category
+                </div>
+                <div class="project-name">
+                  Examples
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="{{ url_for('static', filename='img/portfolio/fullsize/3.jpg') }}">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/3.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class="project-category text-faded">
+                  Category
+                </div>
+                <div class="project-name">
+                  Examples
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="{{ url_for('static', filename='img/portfolio/fullsize/4.jpg') }}">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/4.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class="project-category text-faded">
+                  Category
+                </div>
+                <div class="project-name">
+                  Examples
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="{{ url_for('static', filename='img/portfolio/fullsize/5.jpg') }}">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/5.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class="project-category text-faded">
+                  Category
+                </div>
+                <div class="project-name">
+                  Examples
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="{{ url_for('static', filename='img/portfolio/fullsize/6.jpg') }}">
+            <img class="img-fluid" src="{{ url_for('static', filename='img/portfolio/thumbnails/6.jpg') }}" alt="">
+            <div class="portfolio-box-caption">
+              <div class="portfolio-box-caption-content">
+                <div class="project-category text-faded">
+                  Category
+                </div>
+                <div class="project-name">
+                  Examples
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
+  </section>
+
 
 {% include 'footer.html' %} 
