@@ -7,7 +7,13 @@
 			padding: 15px;
 		}
 		h1{
-			color: black
+			color: black;
+		}
+		p:first-child{
+			color: red;
+			border: 1px solid black;
+			background-color: white;
+			padding: 15px;
 		}
 		</style>
   <header class="masthead text-center text-white d-flex">
@@ -16,18 +22,7 @@
         <div class="col-lg-10 mx-auto">
 		<h1>Ingredients Results</h1>
 		<center>	
-			<table>
-				<tr>
-					<th>Ingredient</th>
-					<th>Description</th>
-				</tr>
-		    		{% for keys, values in ingredients.items() %}
-				<tr>
-					<td>{{ keys }} </td>
-		     			<td> {{ values }} </td>
-				</tr>
-	            		{% endfor %}
-			</table>
+			<p class="error">It appears there was an error with the picture you tried to upload, try another picture that is similar to our examples!</p>
 		</center>
           <hr>
         </div>

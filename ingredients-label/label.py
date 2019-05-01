@@ -47,11 +47,11 @@ def upload_file():
             #return redirect(request.url)
             #if file not fould redirect to index page and ask to re-upload
             results={}
-            return results(results)
+            return render_template('error.html')
         file = request.files['file']
         if file.filename == '':
             print('No selected file')
-            return redirect(request.url)
+            return render_template('error.html')
         if file:
             #config the folder for upload image and rename it
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],"img.png"))
@@ -119,6 +119,8 @@ def upload_file():
                             if word2[0].lower() == word.lower():
                                 print(word2[0] + ": "+ word2[1])
                                 results[word2[0]]=word2[1]
+                    if(not bool(results)):
+                        results["None"] = "There are no ingredients that match with our unhealthy ingredients!"
                     return results_page(results)
                     results ={}
                 print("after searching")
@@ -128,7 +130,7 @@ def upload_file():
 
                 countRotate = 0
                 #rotat until we can find it, if roate in more than 3 times =  not found
-                while (text.find("INGREDIENTS:") == -1 or text == "" or (text.find("Ingredients:")==-1) or (text.find("ingredients:")==-1)):
+                while (text.find("INGREDIENTS:") == -1  or (text.find("Ingredients:")==-1) or (text.find("ingredients:")==-1)):
 
                     # rotate it and check if we can find it
                     img = img.rotate(90)
@@ -139,18 +141,22 @@ def upload_file():
                     #print text
 
                     # if we find it put them in to the list to use for database.
-                    if((text.find("INGREDIENTS:")!=-1) or (text.find("ingredients:")!=-1) or (text.find("Ingredients:")!=-1) or (text.find("Ingredients:")!=-1)):
+                    if((text.find("INGREDIENTS:")!=-1) or (text.find("ingredients:")!=-1) or (text.find("Ingredients:")!=-1)):
                         indexOfIn = 0
+                        print (text)
                         print("if inside while loop")
                         if(text.find("INGREDIENTS:")!=-1):
                             indexOfIn = text.find("INGREDIENTS:")
+                            print("1")
                         elif(text.find("ingredients:")!=-1):
                             indexOfIn = text.find("ingredients:")
+                            print("2")
                         elif(text.find("Ingredients:")!=-1):
                             indexOfIn = text.find("Ingredients:")
+                            print("3")
                         else:
                             print("Not found")
-
+                        print("Why you no print Not Found!?")
                         #set the start index for the string
                         index = indexOfIn + 12
                         startIndex = index
@@ -179,7 +185,7 @@ def upload_file():
                             print("connect successful")
                             db.row_factory = sqlite3.Row
                             cur = db.cursor()
-                            cur.execute("SELECT name FROM ingredients")
+                            cur.execute("SELECT name,description FROM ingredients")
                             #2D array.
                             rows = cur.fetchall()
                             for row in rows:
@@ -191,6 +197,8 @@ def upload_file():
                                     if word2[0].lower() == word.lower():
                                         print(word2[0] + ": "+ word2[1])
                                         results[word2[0]]=word2[1]
+                            if(not bool(results)):
+                                results["None"] = "There are no ingredients that match with our unhealthy ingredients!"
                             return results_page(results)
                             results ={}
                         print("after searching")
@@ -198,7 +206,7 @@ def upload_file():
                         break
                     #if we rotate more than 3 times meaning that we did not find it. Break out of loop.
                     if(countRotate >3):
-                        text ="Not Found."
+                        return render_template('error.html')
                         break
             return text
     else:
